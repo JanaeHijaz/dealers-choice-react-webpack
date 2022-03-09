@@ -32,9 +32,12 @@ Albums.create({name: , releaseDate: , artistDate: , albumURL: })
 Albums.create({name: , releaseDate: , artistDate: , albumURL: })
 Albums.create({name: , releaseDate: , artistDate: , albumURL: })
 
-
 }
 
-module.exports = {
+// export db, Albums model, and syncAndSeed here
 
+module.exports = {
+    db, 
+    Albums, 
+    syncAndSeed
 }

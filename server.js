@@ -17,8 +17,16 @@ app.post()
 
 app.delete() 
 
-// data sync here
+// database initialization and sync the data 
 
-const init = async () => {}
+const init = async () => {
+    try{
+        
+    }
+    catch(error){
+        console.log("error")
+    }
 
-init ()
+}
+
+init ();
