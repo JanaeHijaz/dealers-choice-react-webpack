@@ -38,7 +38,7 @@ const syncAndSeed = async() => {
     try { 
      await db.sync({force: true});
      await Flight.create({flightNumber: 8080, time: '08:00:00', origin: 'New York City' , destination: 'Denmark'});
-     await Flight.create({flightNumber: 3000, time: '12:30:00', origin: 'Sao Paulo' , destination: 'London'});
+     await Flight.create({flightNumber: 3040, time: '12:30:00', origin: 'Sao Paulo' , destination: 'London'});
      await Flight.create({flightNumber: 7876, time: '10:45:00', origin: 'Boston' , destination: 'Cleveland'});
      await Flight.create({flightNumber: 9907, time: '02:00:00', origin: 'New Delhi' , destination: 'Tokyo' });
      await Flight.create({flightNumber: 4004, time: '04:00:00', origin: 'Los Angeles' , destination: 'Riyadh'});
@@ -48,8 +48,8 @@ const syncAndSeed = async() => {
      const port = process.env.PORT || 3000;
      app.listen(port, () => console.log(`listening on port ${port}`))
     }
-    catch(error){
-        console.log(error)
+    catch(ex){
+        console.log(ex)
     }
 }
 syncAndSeed();

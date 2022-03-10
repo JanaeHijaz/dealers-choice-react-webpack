@@ -8,9 +8,7 @@ import axios from 'axios';
 const FlightList = (props) => {
   const flight = props.flight;
   const destroy = props.destroy; // check this
-  return (
- // finish this
-  )
+  
 }
 
 // Main Component w/ primary render function

@@ -56,8 +56,8 @@ app.delete('/api/flights/:id', async (req, res, send) => {
         await flight.destroy();
         res.sendStatus(204)
         }
-        catch(error){
-            next(error)
+        catch(ex){
+            next(ex)
         }
 }) 
 
