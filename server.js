@@ -1,11 +1,9 @@
-const { db, syncAndSeed, Flight } = require('./db/index.js');
+const { db, Flight, syncAndSeed } = require('./db/index.js');
 const express = require('express');
 const app = express();
 const path = require('path');
 
-
-// ------- GET/POST routes and middleware here. 
-
+// ------- GET/POST routes and middleware
 app.use('/dist', express.static(path.join(__dirname, 'dist')))
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
@@ -13,8 +11,6 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Add a GET API route:
-
-
 app.get('/api/flights', async(req, res, next) => {
     try{
         const flights = await Flight.findAll();
@@ -26,7 +22,6 @@ app.get('/api/flights', async(req, res, next) => {
 });
 
 // Individual GET API Route
-
 app.get('/api/flights/:id', async(req, res, next) => {
     try{
         const flight = await Flight.findByPk(req.params.id);
@@ -38,7 +33,6 @@ app.get('/api/flights/:id', async(req, res, next) => {
 });
 
 // POST route
-
 app.post('/api/flights', async (req, res, next) => {
     try {
         res.send(await Flight.generateRandom())
@@ -49,7 +43,6 @@ app.post('/api/flights', async (req, res, next) => {
 })
 
 // DELETE route
-
 app.delete('/api/flights/:id', async (req, res, send) => {
     try{
         const flight = await Flight.findByPk(req.params.id);

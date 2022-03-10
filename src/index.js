@@ -11,7 +11,7 @@ const FlightList = (props) => {
   
 }
 
-// Main Component w/ primary render function
+// Main Component w/ render function
 
 class Main extends React.Component {
   constructor(){
@@ -19,6 +19,8 @@ class Main extends React.Component {
     this.state = {
       flights: []
     }
+    this.create = this.create.bind(this);
+    this.destroy = this.destroy.bind(this);
   }
   async componentDidMount() {
     try{
@@ -30,8 +32,9 @@ class Main extends React.Component {
     }
   }
 
-  async create () {} // finish
-  async destroy() {} // finish
+  // re-add these!!!!! 
+  async create () {} 
+  async destroy() {} 
 
     render(){
       return (
@@ -40,7 +43,7 @@ class Main extends React.Component {
           <ul>
             {this.state.flights.map(flight => {
               return ( 
-                <FlightList />
+                <div> <li> Flight# {flight.flightNumber} </li></div>
               )
             })}
           </ul>
@@ -50,10 +53,6 @@ class Main extends React.Component {
     }
 }
 
-
-
-
-//separate other components as needed 
 
 ReactDOM.render(
     <Main />,
