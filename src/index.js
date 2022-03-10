@@ -25,10 +25,11 @@ class Main extends React.Component {
   async componentDidMount() {
     try{
       const response = await axios.get('/api/flights');
+      const flights = response.data
       this.setState({flights: flights});
     }
     catch(error){
-      next(error)
+      console.log(error)
     }
   }
 
@@ -43,7 +44,7 @@ class Main extends React.Component {
           <ul>
             {this.state.flights.map(flight => {
               return ( 
-                <div> <li> Flight# {flight.flightNumber} </li></div>
+                <div> <li> {flight.flightNumber} </li></div>
               )
             })}
           </ul>

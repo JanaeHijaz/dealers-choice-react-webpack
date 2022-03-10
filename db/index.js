@@ -45,14 +45,15 @@ const syncAndSeed = async() => {
      await Flight.create({flightNumber: 5887, time: '11:50:00', origin: 'Paris' , destination: 'Versailles'});
      await Flight.create({flightNumber: 1224, time: '05:20:00', origin: 'Miami' , destination: 'Mexico City'})
 
-     const port = process.env.PORT || 3000;
-     app.listen(port, () => console.log(`listening on port ${port}`))
+     // THIS SHOULDNT GO HERE!! But why not? 
+     //const port = process.env.PORT || 3000;
+     //app.listen(port, () => console.log(`listening on port ${port}`))
     }
     catch(ex){
         console.log(ex)
     }
 }
-syncAndSeed();
+//syncAndSeed();
 
 
 module.exports = {
