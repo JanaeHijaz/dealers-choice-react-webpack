@@ -29,7 +29,9 @@ const Flight = db.define('flight', {
 
 
 // generate random flight:
-// Flight.generateRandom = function () {}
+Flight.generateRandom = function () {
+    return this.create({flightNumber:`${Math.ceil(Math.random()* 9000)}`})
+}
 
 
 const syncAndSeed = async() => {
@@ -43,7 +45,7 @@ const syncAndSeed = async() => {
      await Flight.create({flightNumber: 5887, time: '11:50:00', origin: 'Paris' , destination: 'Versailles'});
      await Flight.create({flightNumber: 1224, time: '05:20:00', origin: 'Miami' , destination: 'Mexico City'})
 
-     const port = process.env.PORT || 3030;
+     const port = process.env.PORT || 3000;
      app.listen(port, () => console.log(`listening on port ${port}`))
     }
     catch(error){
@@ -54,6 +56,7 @@ syncAndSeed();
 
 
 module.exports = {
+    db,
     Flight, 
     syncAndSeed
 }
