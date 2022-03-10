@@ -22,6 +22,7 @@ class Main extends React.Component {
     this.create = this.create.bind(this);
     this.destroy = this.destroy.bind(this);
   }
+
   async componentDidMount() {
     try{
       const response = await axios.get('/api/flights');
@@ -34,21 +35,34 @@ class Main extends React.Component {
   }
 
   // re-add these!!!!! 
-  async create () {} 
+  async create () {
+    const response = await axios.post('/api/flights');
+    const flight = response.data;
+    const flights = [...this.state.flights, flight];
+    this.setState({flights})
+  } 
   async destroy() {} 
 
-    render(){
+    render() {
       return (
-        <div id='flight'>
+        <div id='main'>
+
           <h1> Fullstack International Airport </h1>
-          <ul>
+
+          <div>
             {this.state.flights.map(flight => {
               return ( 
-                <div> <li> {flight.flightNumber} </li></div>
+                <div key={flight.id}>
+                <div > Flight# {flight.flightNumber} 
+                  <button onClick={() => this.destroy(flight)}> Remove </button>
+                </div>
+                </div>
               )
             })}
-          </ul>
+          </div>
 
+          <button onClick={() => this.create}> Add New Flight </button>
+            
         </div>
       )
     }
@@ -57,6 +71,6 @@ class Main extends React.Component {
 
 ReactDOM.render(
     <Main />,
-    document.getElementById('#root')
+    document.getElementById('root') // initially wasnt working because I had '#' in front of root!
   )
 

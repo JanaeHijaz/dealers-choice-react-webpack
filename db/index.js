@@ -53,7 +53,7 @@ const syncAndSeed = async() => {
         console.log(ex)
     }
 }
-//syncAndSeed();
+//syncAndSeed(); No! 
 
 
 module.exports = {
