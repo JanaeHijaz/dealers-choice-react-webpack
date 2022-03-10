@@ -35,12 +35,13 @@ app.get('/api/flights/:id', async(req, res, next) => {
 // POST route
 app.post('/api/flights', async (req, res, next) => {
     try {
-        res.send(await Flight.generateRandom())
+        res.status(201).send(await Flight.generateRandom());
+        console.log(Flight.generateRandom())
     }
     catch(error){
         next(error)
     }
-})
+});
 
 // DELETE route
 app.delete('/api/flights/:id', async (req, res, send) => {

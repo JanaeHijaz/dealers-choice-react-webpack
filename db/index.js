@@ -30,7 +30,7 @@ const Flight = db.define('flight', {
 
 // generate random flight:
 Flight.generateRandom = function () {
-    return this.create({flightNumber:`${Math.ceil(Math.random()* 9000)}`})
+    return this.create({flightNumber:`Flight# ${ Math.floor(Math.random()* 9000)}`})
 }
 
 
