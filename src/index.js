@@ -5,11 +5,6 @@ import axios from 'axios';
 
 //functional component (child)
 
-const FlightList = (props) => {
-  const flight = props.flight;
-  const destroy = props.destroy; // check this
-  
-}
 
 // Main Component w/ render function
 
@@ -36,7 +31,7 @@ class Main extends React.Component {
 
  // Create new Flight
   async create () {
-    console.log("in the create function!")
+    console.log("in the create function but getting 500 error message!")
 
     const response = await axios.post('/api/flights');
     const newflight = response.data;
@@ -47,12 +42,11 @@ class Main extends React.Component {
 
  // Remove flight
 
-  // async destroy(id) {
-  //   await axios.delete(`/api/flights/${id}`);
-  //   const flights = this.state.flights.filter(_flight => _flight.id !== id);
-  //   this.setState({ flights })
-
-  // } 
+  async destroy(id) {
+    await axios.delete(`/api/flights/${id}`);
+    const flights = this.state.flights.filter(_flight => _flight.id !== id);
+    this.setState({ flights })
+  } 
 
     render() {
       return (
@@ -65,20 +59,20 @@ class Main extends React.Component {
               return ( 
                 <div key={flight.id}>
                 <div > Flight# {flight.flightNumber} 
-                  <button onClick={ () => console.log("delete!") }> Remove </button>
+                  <button onClick={ () => console.log("delete function causing error") }> Remove </button>
                 </div>
                 </div>
               )
             })}
           </div>
-
-          
-            
         </div>
       )
     }
 }
 
+// create and destroy functions are not working, create function is returning a 500 error message,
+// I believe the issue is with my server, although I don't see any issues with my app.post route. 
+// I dont know what to do, sorry. 
 
 ReactDOM.render(
     <Main />,
