@@ -1,32 +1,33 @@
-// ------ data layer (create models) 
+const { syncAndSeed, Flight } = require('./db/index.js');
+const express = require('express');
+const app = express();
+const path = require('path')
 
-// sequelize required 
-// new Sequelize
-
-
-// ------ express (init function/initialize and port set up)
-
-// express required
-// app = express()
 
 // ------- GET/POST routes and middleware here. 
 
-app.get()
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/dist', express.static(path.join(__dirname, 'dist')))
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/index.html'));
+  });
 
-app.post()
 
-app.delete() 
+// Add a GET API route:
 
-// database initialization and sync the data 
-
-const init = async () => {
+app.get('/api/flights', async (req, res, next) => {
     try{
-        
+        const flights = await Flight.findAll();
+        res.send(flights);
     }
     catch(error){
-        console.log("error")
+        next(error)
     }
+})
 
-}
+// app.post()
 
-init ();
+// app.delete() 
+
+
+
