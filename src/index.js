@@ -3,8 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-//functional component (child)
-
 
 // Main Component w/ render function
 
@@ -19,32 +17,28 @@ class Main extends React.Component {
   }
 
   async componentDidMount() {
-    try{
+    
       const response = await axios.get('/api/flights');
       const flights = response.data
       this.setState({flights: flights});
-    }
-    catch(error){
-      console.log(error)
-    }
+   
   }
 
  // Create new Flight
   async create () {
-    console.log("in the create function but getting 500 error message!")
-
+    
     const response = await axios.post('/api/flights');
     const newflight = response.data;
-    console.log(newflight)
     const flights = [...this.state.flights, newflight];
     this.setState({ flights });
   } 
 
  // Remove flight
 
-  async destroy(id) {
-    await axios.delete(`/api/flights/${id}`);
-    const flights = this.state.flights.filter(_flight => _flight.id !== id);
+  async destroy(flight) {
+    console.log(flight)
+    await axios.delete(`/api/flights/${flight.id}`);
+    const flights = this.state.flights.filter(_flight => _flight.id !== flight.id);
     this.setState({ flights })
   } 
 
@@ -58,8 +52,8 @@ class Main extends React.Component {
             {this.state.flights.map(flight => {
               return ( 
                 <div key={flight.id}>
-                <div > Flight# {flight.flightNumber} 
-                  <button onClick={ () => console.log("delete function causing error") }> Remove </button>
+                <div> Flight# {flight.flightNumber} 
+                  <button onClick={ () => this.destroy(flight) }> Remove </button>
                 </div>
                 </div>
               )
@@ -70,9 +64,8 @@ class Main extends React.Component {
     }
 }
 
-// create and destroy functions are not working, create function is returning a 500 error message,
-// I believe the issue is with my server, although I don't see any issues with my app.post route. 
-// I dont know what to do, sorry. 
+
+
 
 ReactDOM.render(
     <Main />,

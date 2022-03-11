@@ -17,20 +17,18 @@ const Flight = db.define('flight', {
       },
     origin: {
         type: Sequelize.STRING,
-        allowNull: false,
-        validate: { notEmpty: true}
+        defaultValue: 'New York'
     },
     destination: {
         type: Sequelize.STRING,
-        allowNull: false,
-        validate: { notEmpty: true}
+        defaultValue: 'San Francisco'
     }
 });
 
 
 // generate random flight:
 Flight.generateRandom = function () {
-    return this.create({flightNumber:`Flight# ${ Math.floor(Math.random()* 9000)}`})
+    return this.create({flightNumber: `${Math.floor(Math.random() * 9000)}`})
 }
 
 
