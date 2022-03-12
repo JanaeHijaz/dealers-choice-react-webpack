@@ -12,7 +12,7 @@ const Flight = db.define('flight', {
     }, 
     time: {
         type: Sequelize.TIME,
-        defaultValue: '00:00:00',
+        defaultValue: '02:30:00',
         field: 'hour'
       },
     origin: {
@@ -30,7 +30,7 @@ const Flight = db.define('flight', {
 Flight.generateRandom = function () {
     return this.create({flightNumber: `${Math.floor(Math.random() * 9000)}`})
 }
-
+ console.log("cant you see this?")
 
 const syncAndSeed = async() => {
     try { 
